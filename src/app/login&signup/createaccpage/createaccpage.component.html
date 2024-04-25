@@ -1,0 +1,84 @@
+    <div class="container-fluid" style="background-color: #ecf0f5;">
+        <form [formGroup]="formgroup" (ngSubmit)="submitdata()">
+            <h2 class="heading">Create account</h2>
+        <div class="card">
+            <label for="Email">Email address <span class="req">(required)</span></label>
+            <input type="email"  class="input" formControlName="Email" [class.is-invalid]="formgroup.get('Email').invalid && formgroup.get('Email').touched">
+            <span class="cardp1" *ngIf="formgroup.get('Email').valid || formgroup.get('Email').untouched && !formgroup.get('Email').focused ">You'll use your email address to log in.</span>
+            <span class="error" *ngIf="formgroup.get('Email').hasError('required') && formgroup.get('Email').touched"><i class="fa-regular fa-circle-xmark"></i> Email is Required</span>    
+            <span class="error" *ngIf="formgroup.get('Email').errors && formgroup.get('Email').errors['email'] && formgroup.get('Email').touched">
+                <i class="fa-regular fa-circle-xmark"></i>Input is not a valid email address
+            </span>
+            <br>
+            <label for="Name">Name</label>
+            <input type="text" name="" id="Name" class=" input" formControlName="Name">
+            <p class="cardp1">What should we call you?</p>
+            <!-- masterpsw -->
+            <label for="Masterpassword">Master Password<span class="req">(required)</span></label>
+            <div class="eye">
+                <input (input)="updatePasswordStrength($event.target.value)" *ngIf="!showPassword; else hidePassword" type="password" name="" id="MasterPsw" class="mp " formControlName="Masterpassword" [class.is-invalid]="formgroup.get('Masterpassword').invalid && formgroup.get('Masterpassword').touched">
+                <ng-template #hidePassword>
+                    <input (input)="updatePasswordStrength($event.target.value)" type="text" name="" id="MasterPsw" class="mp " formControlName="Masterpassword" [class.is-invalid]="formgroup.get('Masterpassword').invalid && formgroup.get('Masterpassword').touched">
+                </ng-template>
+                <i class="fa {{ eyeIcon }} eyeicon" (click)="!togglePasswordVisibility()"></i>
+            </div>
+            <span class="cardp2" *ngIf="formgroup.get('Masterpassword').valid || formgroup.get('Masterpassword').untouched && !formgroup.get('Masterpassword').focused"><strong>Important :</strong> your master Password cannot be recoverd if you forget it! 12
+                character minimum</span>
+            <span class="error" *ngIf="formgroup.get('Masterpassword').hasError('required') && formgroup.get('Masterpassword').touched"><i class="fa-regular fa-circle-xmark"></i>Input is required</span>
+            <span class="error" *ngIf="formgroup.get('Masterpassword').hasError('minlength') && formgroup.get('Masterpassword').touched"><i class="fa-regular fa-circle-xmark"></i>Input must be at least 12 characters long.</span>
+            <br>
+            <!-- progress -->
+            <div class="progress" role="progressbar" aria-label="Password Strength" [attr.aria-valuenow]="passwordStrength" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar " [style.width.%]="passwordStrength"  [ngClass]="progressBarClass"> {{ passwordStrength }}%</div>
+            </div>
+            <!-- re-type-masterpasw -->
+            <br>
+            <label for="ReMasterpassword">Re-type Master Password<span class="req">(required)</span></label>
+            <div class="eye">
+                <input *ngIf="!reshowPsw; else reHidepasw" type="password" name="" id="REmasterpsw" class="mp " formControlName="ReMasterpassword" [class.is-invalid]="formgroup.get('ReMasterpassword').invalid && formgroup.get('ReMasterpassword').touched">
+                <ng-template #reHidepasw >
+                    <input type="text" name="" id="REmasterpsw" class="mp " formControlName="ReMasterpassword" [class.is-invalid]="formgroup.get('ReMasterpassword').invalid && formgroup.get('ReMasterpassword').touched">
+                </ng-template>
+                <i class="fa {{ REeyeIcon }} eyeicon" (click)="!REPasswordVisibility()"></i>
+            </div>
+            <span class="error" *ngIf="formgroup.hasError('passwordMismatch')"><i class="fa-regular fa-circle-xmark"></i> Master password confirmation does not match</span>
+            <br>
+            <label for="MasterpasswordHint">Master Password hint</label>
+            <input class="input " type="text" formControlName="MasterpasswordHint">
+            <p class="cardp2">A master Password hint can help you remember your password if you forget it.</p>
+           <div class="align">
+            <div class="check">
+                <input type="checkbox">&nbsp;
+                <p class="para">Check known data breaches for this password</p>
+            </div>
+            <div class="check">
+                <input type="checkbox">&nbsp;
+                <p class="para">By checking this box you agree to the following:</p>
+            </div> 
+            <div class="link">
+                <a href="" class="links" target="_blank">Terms of Service,</a>
+                <a href="" style="text-decoration: none;" target="_blank">Privacy Policy</a>
+            </div>
+           </div>
+           <br><br>
+           <button class="btn btn-primary btn" type="submit">create account</button>
+           <br>
+           <div class="login">
+            <p>Alredy have an account?</p> &nbsp;
+            <a href="/login">Log in</a>
+           </div>
+           <p class="error" *ngIf="forminvalid()" [class.d-none]="formgroup.untouched && formgroup.invalid"><i class="fa-regular fa-circle-xmark"></i>2filed(s) above need your attention</p>
+        </div>
+    </form>
+    <div class="footer">
+        Server:
+              <select name="" id="" class="dd">
+                  <option value="" selected>bitwarden.com</option>
+                  <option value="">bitwarden.au</option>
+              </select>
+              <div class="version">
+                  <span><i class="fa fa-copyright"></i>2024 Bitwarden Inc.</span>
+                  <p class="v">Version 2024.2.5</p>
+              </div>
+          </div>
+    </div>

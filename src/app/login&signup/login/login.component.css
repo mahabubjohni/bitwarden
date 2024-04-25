@@ -1,0 +1,80 @@
+.container-fluid{
+    background-color: #ecf0f5;
+    height: 100vh;
+    width: 100vw;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+img, h1{
+    padding-top: 60px;
+}
+h1{
+    font-family: sans-serif;
+}
+.p1{
+    margin-left: 40%;
+    font-size: 17px;
+    font-family:sans-serif;
+    width: 25%;
+    margin-top:5px;
+    font-size: 18px;
+}
+.cardContainer{
+    background-color: white;
+    padding: 20px;
+    width: 26%;
+    height: 45%;
+    border: 1px lightgray solid;
+    margin-left: 38%;
+    border-radius: 8px;
+}
+.btn , .Email{
+    width: 100%;
+}
+.or{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+.passkey {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-family: sans-serif;
+}
+.passkey i{
+    color: blue;
+}
+a{
+    text-decoration: none;
+    font-size: 15px;
+}
+.req{
+    color: black;
+    font-size: 11px;
+}
+.createacc{
+    font-size: 13px;
+}
+.footer{
+    margin-left: 45%;
+    margin-top: 40px;
+    color: gray;
+}
+.dd{
+    border: none;
+    color: blue;
+    background-color:  #ecf0f5;
+    cursor: pointer;
+}
+.version{
+    margin-left: 1%;
+}
+.v{
+    margin-left: 2%;
+}
